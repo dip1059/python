@@ -6,15 +6,15 @@ import wikipedia
 import pyjokes
 
 listener = sr.Recognizer()
-alexa = pyttsx3.init()
-# voices = alexa.getProperty('voices')
-alexa.setProperty("rate", 150)
-alexa.setProperty('voice', "en-westindies+f3")
+luna = pyttsx3.init()
+# voices = luna.getProperty('voices')
+luna.setProperty("rate", 170)
+luna.setProperty('voice', "en-westindies+f2")
 
 
 def talk(text):
-    alexa.say(text)
-    alexa.runAndWait()
+    luna.say(text)
+    luna.runAndWait()
 
 
 def take_command():
@@ -25,8 +25,8 @@ def take_command():
             command = listener.recognize_google(voice)
             command = command.lower()
             print(command)
-            if 'alexa' in command:
-                command = command.replace('alexa', '')
+            if 'luna' in command or 'lona' in command:
+                command = command.replace('luna', '')
                 return command
             else:
                 return ""
@@ -34,7 +34,7 @@ def take_command():
         return ""
 
 
-def run_alexa():
+def run_luna():
     command = take_command()
     if not command:
         return
@@ -54,12 +54,15 @@ def run_alexa():
         talk(info)
     elif 'joke' in command:
         talk(pyjokes.get_joke())
-    elif 'date' in command:
-        talk('Sorry vaiya, I am in another relation')
+    elif 'say hello' in command:
+        words = command.split(" ", -1)
+        # name = command.replace('say hello to', '')
+        name = words[len(words)-1]
+        talk(f'Hello {name}, Happy new year')
     else:
         talk('I did not get it but I am going to search it for you')
         pywhatkit.search(command)
 
 
 while True:
-    run_alexa()
+    run_luna()
