@@ -9,17 +9,17 @@ import constants as consts
 def start():
   print("start at: ", datetime.now())
   try:
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
     
     try:
-      target_timetamp = datetime(2023, 11, 16, 21, 33, 0).timestamp()
+      target_timetamp = datetime(2023, 11, 17, 00, 19, 0).timestamp()
       reedem_giftcard(driver, target_timetamp)
     except Exception as e:
       print(e)
     
-    # input_str = input()
-    # while input_str != "exit":
-    #   input_str = input()
+    input_str = input()
+    while input_str != "exit":
+      input_str = input()
     
     driver.quit()
 

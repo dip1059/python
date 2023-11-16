@@ -4,8 +4,9 @@ from datetime import datetime, timedelta
 import constants as consts
 import time
 
-def do_login(driver: webdriver.Chrome | webdriver.Firefox, url = consts.BASE_URL+'login'):
+def do_login(driver: webdriver.Chrome or webdriver.Firefox, url = consts.BASE_URL+'login'):
   driver.get(url)
+  time.sleep(consts.COMMON_SLEEP_SEC)
 
   txtEmail=driver.find_element(By.XPATH,"//input[@id='email']")
   txtPassword=driver.find_element(By.XPATH,"//input[@id='password']")
